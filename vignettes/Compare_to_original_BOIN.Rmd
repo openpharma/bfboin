@@ -1,0 +1,58 @@
+---
+title: "Compare_to_original_BOIN"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compare_to_original_BOIN}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(bfboin)
+```
+
+
+A good starting point to test that `get.oc.bf()` is working as expected is that it should produce the same result (within simulation error) as `BOIN::get.oc()` when the response rates are all set to zero (thus effectively turning off the backfilling component of the design).
+
+```{r}
+get.oc.bf(ntrial = 10000,
+          seed = 9,
+          target = 0.25,
+          p.true = c(0.1, 0.5),
+          ncohort = 10,
+          cohortsize = 3,
+          n.earlystop = 9,
+          startdose = 1,
+          titration = FALSE,
+          cutoff.eli = 0.95,
+          extrasafe = TRUE,
+          offset = 0.1,
+          boundMTD=FALSE,
+          n.cap = 12,
+          end.backfill = TRUE,
+          n.per.month = 1,
+          dlt.window = 1,
+          p.response.true = c(0.00001, 0.00001))
+
+
+BOIN::get.oc(target = 0.25,
+             p.true = c(0.1, 0.5),
+             ncohort = 10,
+             cohortsize = 3,
+             n.earlystop = 9,
+             startdose = 1,
+             titration = FALSE,
+             cutoff.eli = 0.95,
+             extrasafe = TRUE,
+             offset = 0.1,
+             boundMTD=FALSE,
+             ntrial = 10000, seed = 6)
+```
+
