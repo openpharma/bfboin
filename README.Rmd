@@ -32,7 +32,6 @@ devtools::install_gitlab("boin/bfboin")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(bfboin)
@@ -54,5 +53,6 @@ get.oc.bf(ntrial = 100,
           end.backfill = TRUE,
           n.per.month = 1,
           dlt.window = 1,
-          p.response.true = c(0.001, 0.001))
+          p.response.true = c(0.001, 0.001),
+          accrual = "uniform")
 ```

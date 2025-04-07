@@ -22,8 +22,6 @@ devtools::install_gitlab("boin/bfboin")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(bfboin)
 ## basic example code
@@ -44,28 +42,29 @@ get.oc.bf(ntrial = 100,
           end.backfill = TRUE,
           n.per.month = 1,
           dlt.window = 1,
-          p.response.true = c(0.001, 0.001))
+          p.response.true = c(0.001, 0.001),
+          accrual = "uniform")
 #> $selpercent
-#> [1] 81 15
+#> [1] 75 18
 #> 
 #> $npatients
-#> [1] 10.58  7.08
+#> [1] 10.54  7.41
 #> 
 #> $percentpatients
-#> [1] 59.9094 40.0906
+#> [1] 58.71866 41.28134
 #> 
 #> $ntox
-#> [1] 1.18 3.57
+#> [1] 1.01 3.71
 #> 
 #> $totaltox
-#> [1] 4.75
+#> [1] 4.72
 #> 
 #> $totaln
-#> [1] 17.66
+#> [1] 17.95
 #> 
 #> $percentstop
-#> [1] 4
+#> [1] 7
 #> 
 #> $duration
-#> [1] 22.13623
+#> [1] 20.52315
 ```
