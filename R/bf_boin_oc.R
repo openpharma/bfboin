@@ -36,6 +36,8 @@
 #'              investigational dose levels
 #' @param three.plus.three modify the decision from de-escalation to stay when observing
 #'                         1 DLT out of 3 patients
+#' @param accrual "uniform" or "poisson", according to whether accrual distribution is uniform
+#'                (consistent with Shiny App) or a Poisson process (consistent with publication)
 #'
 #' @return A data frame with the number of patients and number of DLTs at each dose level
 #'
@@ -58,7 +60,8 @@ sim.one.trial = function(trial.id = 1,
                          n.per.month = 3,
                          dlt.window = 1,
                          p.response.true = c(1, 1, 1),
-                         three.plus.three = FALSE){
+                         three.plus.three = FALSE,
+                         accrual = "uniform"){
 
 
 
@@ -118,7 +121,9 @@ sim.one.trial = function(trial.id = 1,
     #check.i <- check.i + 1
 
     ## new patient
-    arrival.time = rexp(1, rate = n.per.month)
+    arrival.time = ifelse(accrual == "poisson",
+                          rexp(1, rate = n.per.month),
+                          runif(1, 0, n.per.month * 2))
     clock = ifelse(pat.i == 1, 0, clock + arrival.time)
     pat.i = pat.i + 1
 
@@ -516,6 +521,8 @@ sim.one.trial = function(trial.id = 1,
 #'              investigational dose levels
 #' @param three.plus.three modify the decision from de-escalation to stay when observing
 #'                         1 DLT out of 3 patients
+#' @param accrual "uniform" or "poisson", according to whether accrual distribution is uniform
+#'                (consistent with Shiny App) or a Poisson process (consistent with publication)
 #'
 #' @return \code{get.oc.bf()} returns the operating characteristics of the BOIN design as a list,
 #'        including:
@@ -574,7 +581,8 @@ get.oc.bf <- function(ntrial = 1000,
                       n.per.month = 3,
                       dlt.window = 1,
                       p.response.true = c(1, 1, 1),
-                      three.plus.three = FALSE){
+                      three.plus.three = FALSE,
+                      accrual = "uniform"){
 
   ############ Sanity #############
   if (target < 0.05) {
@@ -611,6 +619,9 @@ get.oc.bf <- function(ntrial = 1000,
   if (!end.backfill){
     stop("This implementation assumes backfill ends when dose escalation ends.")
   }
+  if (!accrual %in% c("uniform", "poisson")){
+    stop("Accrual must be either 'uniform' or 'poisson'")
+  }
 
   set.seed(seed)
 
@@ -633,7 +644,8 @@ get.oc.bf <- function(ntrial = 1000,
                       n.per.month = n.per.month,
                       dlt.window = dlt.window,
                       p.response.true = p.response.true,
-                      three.plus.three = three.plus.three)
+                      three.plus.three = three.plus.three,
+                      accrual = accrual)
 
 
   ndose = length(p.true)
