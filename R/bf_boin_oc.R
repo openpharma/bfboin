@@ -123,7 +123,7 @@ sim.one.trial = function(trial.id = 1,
     ## new patient
     arrival.time = ifelse(accrual == "poisson",
                           rexp(1, rate = n.per.month),
-                          runif(1, 0, n.per.month * 2))
+                          runif(1, 0, 2/n.per.month))
     clock = ifelse(pat.i == 1, 0, clock + arrival.time)
     pat.i = pat.i + 1
 
