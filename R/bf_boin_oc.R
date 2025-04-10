@@ -111,14 +111,9 @@ sim.one.trial = function(trial.id = 1,
   clock = 0
   n.cohort = 1
 
-  #check.i = 1
   pat.i = 1
 
   while (n.cohort <= ncohort){
-  #while (n.cohort <= ncohort && check.i <= 4){
-
-    #print(check.i)
-    #check.i <- check.i + 1
 
     ## new patient
     arrival.time = ifelse(accrual == "poisson",

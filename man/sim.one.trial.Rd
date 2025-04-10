@@ -24,7 +24,8 @@ sim.one.trial(
   n.per.month = 3,
   dlt.window = 1,
   p.response.true = c(1, 1, 1),
-  three.plus.three = FALSE
+  three.plus.three = FALSE,
+  accrual = "uniform"
 )
 }
 \arguments{
@@ -83,6 +84,9 @@ investigational dose levels}
 
 \item{three.plus.three}{modify the decision from de-escalation to stay when observing
 1 DLT out of 3 patients}
+
+\item{accrual}{"uniform" or "poisson", according to whether accrual distribution is uniform
+(consistent with Shiny App) or a Poisson process (consistent with publication)}
 }
 \value{
 A data frame with the number of patients and number of DLTs at each dose level
