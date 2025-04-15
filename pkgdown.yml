@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Compare_to_original_BOIN: Compare_to_original_BOIN.html
   Compare_to_publication: Compare_to_publication.html
-last_built: 2025-04-15T11:01Z
+last_built: 2025-04-15T11:25Z
 urls:
   reference: https://openpharma.github.io/bfboin/reference
   article: https://openpharma.github.io/bfboin/articles
