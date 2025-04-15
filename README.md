@@ -7,9 +7,13 @@
 <!-- badges: end -->
 
 The goal of bfboin is to provide an independent implementation of the
-[BF-BOIN design](https://pubmed.ncbi.nlm.nih.gov/38048044/) aiming to
-reproduce the functionality of the [shiny app by MD
-Anderson](https://biostatistics.mdanderson.org/shinyapps/BF-BOIN/).
+[BF-BOIN design](https://pubmed.ncbi.nlm.nih.gov/38048044/) of Zhou et
+al. (2024), aiming to reproduce the functionality of the [shiny app by
+MD Anderson](https://biostatistics.mdanderson.org/shinyapps/BF-BOIN/).
+
+Zhao, Y., Yuan, Y., Korn, E.L. and Freidlin, B., 2024. Backfilling
+patients in phase I dose-escalation trials using Bayesian optimal
+interval design (BOIN). Clinical Cancer Research, 30(4), pp.673-679.
 
 ## Installation
 
@@ -17,7 +21,7 @@ You can install the development version of bfboin like so:
 
 ``` r
 # install.packages("devtools")
-devtools::install_gitlab("boin/bfboin")
+devtools::install_github("openpharma/bfboin")
 ```
 
 ## Example
