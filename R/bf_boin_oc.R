@@ -38,6 +38,8 @@
 #'                         1 DLT out of 3 patients
 #' @param accrual "uniform" or "poisson", according to whether accrual distribution is uniform
 #'                (consistent with Shiny App) or a Poisson process (consistent with publication)
+#' @param backfill.assign How to assign backfill dose given the open backfill doses. Options are
+#'                        "highest" (default), "lowest", or "random".
 #'
 #' @return A data frame with the number of patients and number of DLTs at each dose level
 #'
@@ -61,7 +63,8 @@ sim.one.trial = function(trial.id = 1,
                          dlt.window = 1,
                          p.response.true = c(1, 1, 1),
                          three.plus.three = FALSE,
-                         accrual = "uniform"){
+                         accrual = "uniform",
+                         backfill.assign = "highest"){
 
 
 
@@ -414,7 +417,16 @@ sim.one.trial = function(trial.id = 1,
 
       ## allocate to the highest dose open for backfill
       if (any(open.doses)){
-        d.backfill = max(which(open.doses))
+
+        if (backfill.assign == "highest"){
+          d.backfill = max(which(open.doses))
+        }
+        else if (backfill.assign == "lowest"){
+          d.backfill = min(which(open.doses))
+        }
+        else {
+          d.backfill = sample(which(open.doses), 1)
+        }
 
         ## simulate DLT time
         # simulate time to DLT
@@ -518,6 +530,8 @@ sim.one.trial = function(trial.id = 1,
 #'                         1 DLT out of 3 patients
 #' @param accrual "uniform" or "poisson", according to whether accrual distribution is uniform
 #'                (consistent with Shiny App) or a Poisson process (consistent with publication)
+#' @param backfill.assign How to assign backfill dose given the open backfill doses. Options are
+#'                        "highest" (default), "lowest", or "random".
 #'
 #' @return \code{get.oc.bf()} returns the operating characteristics of the BOIN design as a list,
 #'        including:
@@ -577,7 +591,8 @@ get.oc.bf <- function(ntrial = 1000,
                       dlt.window = 1,
                       p.response.true = c(1, 1, 1),
                       three.plus.three = FALSE,
-                      accrual = "uniform"){
+                      accrual = "uniform",
+                      backfill.assign = "highest"){
 
   ############ Sanity #############
   if (target < 0.05) {
@@ -640,7 +655,8 @@ get.oc.bf <- function(ntrial = 1000,
                       dlt.window = dlt.window,
                       p.response.true = p.response.true,
                       three.plus.three = three.plus.three,
-                      accrual = accrual)
+                      accrual = accrual,
+                      backfill.assign = backfill.assign)
 
 
   ndose = length(p.true)
