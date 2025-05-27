@@ -1,11 +1,13 @@
 Package: bfboin
 Type: Package
-Title: Operating characteristics for the BF-BOIN design
+Title: Operating Characteristics for the BF-BOIN Design
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Dominic", "Magirr", , "dominic.magirr@novartis.com", role = c("aut", "cre")),
+    person("Dominic", "Magirr", , "dominic.magirr@novartis.com", role = c("aut", "cre", "cph")),
     person("Bairu", "Zhang", , "bairu.zhang@novartis.com", role = c("aut")))
-Description: independent implementation of the BF-BOIN design (https://pubmed.ncbi.nlm.nih.gov/38048044/), aiming to reproduce the functionality of the shiny app by MD Anderson (https://biostatistics.mdanderson.org/shinyapps/BF-BOIN/).
+Description: Calculate the operating characteristics of the BF-BOIN  
+    (Bayesin Optimal INterval with BackFill) design for dose-escalation
+    in early-phase oncology trials.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
