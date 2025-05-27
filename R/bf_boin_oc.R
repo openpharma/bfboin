@@ -530,6 +530,8 @@ sim.one.trial = function(trial.id = 1,
 #'                         1 DLT out of 3 patients
 #' @param accrual "uniform" or "poisson", according to whether accrual distribution is uniform
 #'                (consistent with Shiny App) or a Poisson process (consistent with publication)
+#' @param backfill.assign How to assign backfill dose given the open backfill doses. Options are
+#'                        "highest" (default), "lowest", or "random".
 #'
 #' @return \code{get.oc.bf()} returns the operating characteristics of the BOIN design as a list,
 #'        including:

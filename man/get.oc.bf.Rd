@@ -26,7 +26,8 @@ get.oc.bf(
   dlt.window = 1,
   p.response.true = c(1, 1, 1),
   three.plus.three = FALSE,
-  accrual = "uniform"
+  accrual = "uniform",
+  backfill.assign = "highest"
 )
 }
 \arguments{
@@ -90,6 +91,9 @@ investigational dose levels}
 
 \item{accrual}{"uniform" or "poisson", according to whether accrual distribution is uniform
 (consistent with Shiny App) or a Poisson process (consistent with publication)}
+
+\item{backfill.assign}{How to assign backfill dose given the open backfill doses. Options are
+"highest" (default), "lowest", or "random".}
 }
 \value{
 \code{get.oc.bf()} returns the operating characteristics of the BOIN design as a list,
