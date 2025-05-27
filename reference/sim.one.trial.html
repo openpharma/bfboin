@@ -63,7 +63,8 @@
 <span>  dlt.window <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  p.response.true <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>  three.plus.three <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  accrual <span class="op">=</span> <span class="st">"uniform"</span></span>
+<span>  accrual <span class="op">=</span> <span class="st">"uniform"</span>,</span>
+<span>  backfill.assign <span class="op">=</span> <span class="st">"highest"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -171,6 +172,11 @@ investigational dose levels</p></dd>
 <dd><p>"uniform" or "poisson", according to whether accrual distribution is uniform
 (consistent with Shiny App) or a Poisson process (consistent with publication)</p></dd>
 
+
+<dt id="arg-backfill-assign">backfill.assign<a class="anchor" aria-label="anchor" href="#arg-backfill-assign"></a></dt>
+<dd><p>How to assign backfill dose given the open backfill doses. Options are
+"highest" (default), "lowest", or "random".</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -186,7 +192,7 @@ investigational dose levels</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer></div>
