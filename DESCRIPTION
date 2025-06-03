@@ -1,12 +1,12 @@
 Package: bfboin
 Type: Package
-Title: Operating Characteristics for the BF-BOIN Design
+Title: Operating Characteristics for the Bayesian Optimal Interval Design with Back Filling
 Version: 0.1.0
 Authors@R: c(
     person("Dominic", "Magirr", , "dominic.magirr@novartis.com", role = c("aut", "cre", "cph")),
     person("Bairu", "Zhang", , "bairu.zhang@novartis.com", role = c("aut")))
-Description: Calculate the operating characteristics of the BF-BOIN  
-    (Bayesin Optimal INterval with BackFill) design for dose-escalation
+Description: Calculate the operating characteristics of the 
+    Bayesian Optimal Interval with Back Filling Design for dose escalation
     in early-phase oncology trials.
 License: GPL (>= 3)
 Encoding: UTF-8
@@ -14,13 +14,13 @@ LazyData: true
 RoxygenNote: 7.3.1
 Imports: 
     BOIN,
-    dplyr,
     purrr
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    tidyr
+    tidyr,
+    dplyr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 URL: https://openpharma.github.io/bfboin/

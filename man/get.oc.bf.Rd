@@ -131,6 +131,9 @@ get.oc.bf(ntrial = 1000,
           dlt.window = 1,
           p.response.true = c(0.001, 0.001))
 
+
+
+
 }
 \references{
 Zhao Y, Yuan Y, Korn EL, Freidlin B. Backfilling patients in phase I dose-escalation trials using Bayesian optimal interval design (BOIN). Clinical Cancer Research. 2024 Feb 16;30(4):673-9.

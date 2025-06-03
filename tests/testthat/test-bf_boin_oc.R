@@ -4,5 +4,5 @@ test_that("sim.one.trial() works", {
 })
 
 test_that("get.oc.bf() works", {
-  expect_equal(get.oc.bf(ntrial = 10, seed = 9, accrual = "poisson")$npatients,c(17.6,16.8,4.2))
+  expect_equal(get.oc.bf(ntrial = 10, seed = 9, accrual = "poisson")$npatients,c('1'=17.6,'2'=16.8,'3'=4.2))
 })

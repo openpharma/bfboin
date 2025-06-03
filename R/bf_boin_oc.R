@@ -120,8 +120,8 @@ sim.one.trial = function(trial.id = 1,
 
     ## new patient
     arrival.time = ifelse(accrual == "poisson",
-                          rexp(1, rate = n.per.month),
-                          runif(1, 0, 2/n.per.month))
+                          stats::rexp(1, rate = n.per.month),
+                          stats::runif(1, 0, 2/n.per.month))
     clock = ifelse(pat.i == 1, 0, clock + arrival.time)
     pat.i = pat.i + 1
 
@@ -132,7 +132,7 @@ sim.one.trial = function(trial.id = 1,
       cohort_pos = max(c(0,which(!is.na(dlt.calendar.cohort)))) + 1
 
       # simulate time to DLT
-      dlt.time.star = rweibull(1, shape = weibull.shape[d], scale = weibull.scale[d])
+      dlt.time.star = stats::rweibull(1, shape = weibull.shape[d], scale = weibull.scale[d])
       dlt.event = dlt.time.star < dlt.window
       dlt.time = min(dlt.time.star, dlt.window)
 
@@ -143,7 +143,7 @@ sim.one.trial = function(trial.id = 1,
       dlt.event.cohort[cohort_pos] = dlt.event
 
       # simulate response
-      if (rbinom(1,1,p.response.true[d]) == 1) first.response[d] = min(first.response[d], clock + dlt.window)
+      if (stats::rbinom(1,1,p.response.true[d]) == 1) first.response[d] = min(first.response[d], clock + dlt.window)
       if (cohort_pos == cohortsize && first.response[d] < Inf) first.response.end.cohort[d] = min(first.response.end.cohort[d], clock + dlt.window)
 
     }
@@ -204,7 +204,7 @@ sim.one.trial = function(trial.id = 1,
         }
         else if (extrasafe){
           if (d == 1 && n.total[1] >= 3) {
-            if (1 - pbeta(target, y.total[1] + 1, n.total[1] - y.total[1] +
+            if (1 - stats::pbeta(target, y.total[1] + 1, n.total[1] - y.total[1] +
                           1) > cutoff.eli - offset) {
               earlystop = 1
               break
@@ -272,7 +272,7 @@ sim.one.trial = function(trial.id = 1,
                 earlystop = 1
                 break
               }
-              else if (extrasafe && (1 - pbeta(target, y[1] + 1, n[1] - y[1] +
+              else if (extrasafe && (1 - stats::pbeta(target, y[1] + 1, n[1] - y[1] +
                                                 1) > cutoff.eli - offset)){
                 earlystop = 1
                 break
@@ -331,7 +331,7 @@ sim.one.trial = function(trial.id = 1,
                 earlystop = 1
                 break
               }
-              else if (extrasafe && (1 - pbeta(target, y[1] + 1, n[1] - y[1] +
+              else if (extrasafe && (1 - stats::pbeta(target, y[1] + 1, n[1] - y[1] +
                                                1) > cutoff.eli - offset)){
                 earlystop = 1
                 break
@@ -371,7 +371,7 @@ sim.one.trial = function(trial.id = 1,
 
       ## simulate DLT time
       # simulate time to DLT
-      dlt.time.star = rweibull(1, shape = weibull.shape[d], scale = weibull.scale[d])
+      dlt.time.star = stats::rweibull(1, shape = weibull.shape[d], scale = weibull.scale[d])
       dlt.event = dlt.time.star < dlt.window
       dlt.time = min(dlt.time.star, dlt.window)
 
@@ -382,7 +382,7 @@ sim.one.trial = function(trial.id = 1,
       dlt.event.cohort[cohort_pos] = dlt.event
 
       # simulate response
-      if (rbinom(1,1,p.response.true[d]) == 1) first.response[d] = min(first.response[d], clock + dlt.window)
+      if (stats::rbinom(1,1,p.response.true[d]) == 1) first.response[d] = min(first.response[d], clock + dlt.window)
       if (cohort_pos == cohortsize && first.response[d] < Inf) first.response.end.cohort[d] = min(first.response.end.cohort[d], clock + dlt.window)
 
 
@@ -430,7 +430,7 @@ sim.one.trial = function(trial.id = 1,
 
         ## simulate DLT time
         # simulate time to DLT
-        dlt.time.star = rweibull(1, shape = weibull.shape[d.backfill], scale = weibull.scale[d.backfill])
+        dlt.time.star = stats::rweibull(1, shape = weibull.shape[d.backfill], scale = weibull.scale[d.backfill])
         dlt.event = dlt.time.star < dlt.window
         dlt.time = min(dlt.time.star, dlt.window)
 
@@ -490,6 +490,7 @@ sim.one.trial = function(trial.id = 1,
 
 #############################################################################
 #' Get Operating Characteristics for the BF-BOIN Design
+#'
 #'
 #' @param ntrial the total number of trials to be simulated
 #' @param seed the random number seed for simulation
@@ -569,7 +570,14 @@ sim.one.trial = function(trial.id = 1,
 #'           dlt.window = 1,
 #'           p.response.true = c(0.001, 0.001))
 #'
+#'
+#'
+#'
 #' @export
+#'
+
+#'
+#'
 get.oc.bf <- function(ntrial = 1000,
                       seed = 3262,
                       target = 0.25,
@@ -661,11 +669,17 @@ get.oc.bf <- function(ntrial = 1000,
 
   ndose = length(p.true)
 
-  res_sum = res |> dplyr::group_by(d) |> dplyr::summarise(nptsdose = mean(n), ntoxdose = mean(y))
-  nptsdose = res_sum |> dplyr::pull(nptsdose)
-  ntoxdose = res_sum |> dplyr::pull(ntoxdose)
-  dselect = res |> dplyr::group_by(trial.id) |> dplyr::slice(1) |> dplyr::pull(dselect)
-  max.t = res |> dplyr::group_by(trial.id) |> dplyr::slice(1) |> dplyr::pull(max.t)
+  res.split.d = split(res, res$d)
+
+  nptsdose = unlist(lapply(res.split.d, function(x) mean(x$n)))
+  ntoxdose = unlist(lapply(res.split.d, function(x) mean(x$y)))
+
+
+  res.split.id = split(res, res$trial.id)
+
+  dselect = unlist(lapply(res.split.id, function(x) x[1, "dselect"]))
+  max.t = unlist(lapply(res.split.id, function(x) x[1, "max.t"]))
+
   selpercent = rep(0, ndose)
   for (i in 1:ndose) {
     selpercent[i] = sum(dselect == i)/ntrial * 100
