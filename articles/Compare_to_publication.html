@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">bfboin</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,6 +37,7 @@
     <li><a class="dropdown-item" href="../articles/Compare_to_publication.html">Compare to publication</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -385,20 +386,20 @@ and we only consider the first two scenarios.</p>
 <span></span>
 <span><span class="va">out_sim</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="va">generate_oc</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">out_sim</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   Dose_level Toxicity_rate Response_rate percent_selection n_patients</span></span>
-<span><span class="co">#&gt; 1     Dose 1          0.25          0.30              79.9     11.179</span></span>
-<span><span class="co">#&gt; 2     Dose 2          0.41          0.40              12.0      4.649</span></span>
-<span><span class="co">#&gt; 3     Dose 3          0.45          0.45               0.6      0.685</span></span>
-<span><span class="co">#&gt; 4     Dose 4          0.49          0.50               0.0      0.036</span></span>
-<span><span class="co">#&gt; 5     Dose 5          0.53          0.55               0.0      0.003</span></span>
-<span><span class="co">#&gt; 6     Dose 1          0.12          0.20              29.9     11.399</span></span>
-<span><span class="co">#&gt;   percent_patients n_toxicity n_total percent_stop  duration scenario</span></span>
-<span><span class="co">#&gt; 1       67.5386660      2.774  16.552          7.5  8.325489        1</span></span>
-<span><span class="co">#&gt; 2       28.0872402      1.919  16.552          7.5  8.325489        1</span></span>
-<span><span class="co">#&gt; 3        4.1384727      0.319  16.552          7.5  8.325489        1</span></span>
-<span><span class="co">#&gt; 4        0.2174964      0.019  16.552          7.5  8.325489        1</span></span>
-<span><span class="co">#&gt; 5        0.0181247      0.002  16.552          7.5  8.325489        1</span></span>
-<span><span class="co">#&gt; 6       44.3023708      1.288  25.730          0.6 12.507645        2</span></span></code></pre></div>
+<span><span class="co">#&gt;       Dose_level Toxicity_rate Response_rate percent_selection n_patients</span></span>
+<span><span class="co">#&gt; 1...1     Dose 1          0.25          0.30              79.9     11.179</span></span>
+<span><span class="co">#&gt; 2...2     Dose 2          0.41          0.40              12.0      4.649</span></span>
+<span><span class="co">#&gt; 3...3     Dose 3          0.45          0.45               0.6      0.685</span></span>
+<span><span class="co">#&gt; 4...4     Dose 4          0.49          0.50               0.0      0.036</span></span>
+<span><span class="co">#&gt; 5...5     Dose 5          0.53          0.55               0.0      0.003</span></span>
+<span><span class="co">#&gt; 1...6     Dose 1          0.12          0.20              29.9     11.399</span></span>
+<span><span class="co">#&gt;       percent_patients n_toxicity n_total percent_stop  duration scenario</span></span>
+<span><span class="co">#&gt; 1...1       67.5386660      2.774  16.552          7.5  8.325489        1</span></span>
+<span><span class="co">#&gt; 2...2       28.0872402      1.919  16.552          7.5  8.325489        1</span></span>
+<span><span class="co">#&gt; 3...3        4.1384727      0.319  16.552          7.5  8.325489        1</span></span>
+<span><span class="co">#&gt; 4...4        0.2174964      0.019  16.552          7.5  8.325489        1</span></span>
+<span><span class="co">#&gt; 5...5        0.0181247      0.002  16.552          7.5  8.325489        1</span></span>
+<span><span class="co">#&gt; 1...6       44.3023708      1.288  25.730          0.6 12.507645        2</span></span></code></pre></div>
 <p>Next we post-process this output to match the format of Table 4 of
 the paper.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
