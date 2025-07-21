@@ -171,9 +171,9 @@ sim.one.trial = function(trial.id = 1,
 
 
       ## ...what does the decision rule say for each dose level
-      decision = ifelse(y.total <= b.e[n.total], "escalate",
-                        ifelse(y.total >= b.elim[n.total], "eliminate",
-                               ifelse(y.total  >= b.d[n.total], "deescalate", "stay")))
+      decision = ifelse(y.total <= b.e[pmax(1, n.total)], "escalate",
+                        ifelse(y.total >= b.elim[pmax(1, n.total)], "eliminate",
+                               ifelse(y.total  >= b.d[pmax(1, n.total)], "deescalate", "stay")))
 
 
       # special case when 'three.plus.three = TRUE)'
@@ -425,7 +425,12 @@ sim.one.trial = function(trial.id = 1,
           d.backfill = min(which(open.doses))
         }
         else {
-          d.backfill = sample(which(open.doses), 1)
+          if (length(which(open.doses)) == 1){
+            d.backfill = which(open.doses)
+          }
+          else {
+            d.backfill = sample(which(open.doses), 1)
+          }
         }
 
         ## simulate DLT time
