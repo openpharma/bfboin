@@ -405,8 +405,8 @@ sim.one.trial = function(trial.id = 1,
 
       ## what do we need to be eligible for backfill????
       cond.1 = first.response[1:(d-1)] < clock
-      cond.2 = y.total  < b.d[n.total]
-      cond.3 = y.total.plus < b.d[n.total.plus]
+      cond.2 = y.total  < b.d[pmax(1, n.total)]
+      cond.3 = y.total.plus < b.d[pmax(1, n.total.plus)]
       cond.4 = colSums(dlt.backfill.calendar[,1:(d-1), drop = F] < Inf, na.rm = TRUE) + n[1:(d-1)] <= n.cap
 
       safe.doses = cond.2 | cond.3

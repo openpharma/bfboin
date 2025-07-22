@@ -1,7 +1,7 @@
 Package: bfboin
 Type: Package
 Title: Operating Characteristics for the Bayesian Optimal Interval Design with Back Filling
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Dominic", "Magirr", , "dominic.magirr@novartis.com", role = c("aut", "cre", "cph")),
     person("Bairu", "Zhang", , "bairu.zhang@novartis.com", role = c("aut")))
